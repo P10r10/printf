@@ -20,27 +20,25 @@ size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count)
 	int pad = 0;
 
  	s = ft_putnbr(va_arg(ap, int), buf, 0);
+	
 	if (*s == '0' && flag->precision == 0)
 		return (0);
+	
 	len = ft_strlen(s);
+	/*
 	if (flag->precision > len)
-	{
-		flag->width = flag->precision;
-		flag->zero = 1;
-		flag->minus = 0;
-	}
-	if (flag->width > len)
-		pad = flag->width - len;
-//	printf("HERE: %d\n", flag->minus);
-//	getchar();
-	if (flag->minus)
-		count += ft_putstr(s);
+		flag->width = flag->precision;*/
+		
+	if (flag->width > flag->precision)
+		pad = flag->width - flag->precision;
+	//***************
+/*	if (flag->minus)
+		count += ft_putstr(s);*/
+	count += ft_fill(pad, ' ');
 	
-	if (flag->zero)
-		count += ft_fill(pad, '0');
-	else
-		count += ft_fill(pad, ' ');
-	
+	//if (flag->zero)
+		count += ft_fill(flag->precision - len, '0');
+	//****************
 	if (!(flag->minus))
 		count += ft_putstr(s);
 

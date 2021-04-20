@@ -8,10 +8,9 @@ int main()
 {
 	puts("123456789012345678901234567890");
 	
-	printf("%05%|\n");
-	ft_printf("%05%|\n");
+	printf("%.5d|\n", -9);
+	ft_printf("%.5d|\n", -9);
 	//ft_printf("%5.4d|\n", 12);
-	//make d 5 A
-
+//pft test 219
 	return 0;
 }

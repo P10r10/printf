@@ -15,12 +15,25 @@
 size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count)
 {
 	char *s;
-	(void)flag;
+	int len;
 
  	s = ft_putnbr(va_arg(ap, int), buf, 0);
-	
-	count += ft_fill(flag->width - ft_strlen(s), ' ');
-	count += ft_putstr(s);
+	len = ft_strlen(s);
+	if (flag->precision > len)
+	{
+		flag->width = flag->precision;
+		flag->zero = 1;
+		flag->minus = 0;
+	}
+
+	if (flag->minus)
+		count += ft_putstr(s);
+	if (flag->zero)
+		count += ft_fill(flag->width - len, '0');
+	else
+		count += ft_fill(flag->width - len, ' ');
+	if (!(flag->minus))
+		count += ft_putstr(s);
 
 	return (count);
 }

@@ -8,9 +8,9 @@ int main()
 {
 	puts("123456789012345678901234567890");
 	
-	int i = printf("%4d|\n", 123);
+	int i = printf("%-4.d|\n", 123);
 	printf("COUNT: %d\n", i);
-	i = ft_printf("%4d|\n", 123);
+	i = ft_printf("%-4.d|\n", 123);
 	printf("COUNT: %d\n", i);
 
 	return 0;

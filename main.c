@@ -8,8 +8,10 @@ int main()
 {
 	puts("123456789012345678901234567890");
 	
-	printf("%10p|\n", NULL);
-	ft_printf("%10p|\n", NULL);
+	int i = printf("%4d|\n", 123);
+	printf("COUNT: %d\n", i);
+	i = ft_printf("%4d|\n", 123);
+	printf("COUNT: %d\n", i);
 
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: alsantia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 17:01:24 by alsantia          #+#    #+#             */
-/*   Updated: 2021/04/15 20:20:23 by alsantia         ###   ########.fr       */
+/*   Updated: 2021/04/20 18:30:15 by alsantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,6 @@ size_t	treat_type_d(t_flags *flag, va_list ap, char *buf)//rever isto tudo
 	return (count);
 }*/
 
-size_t	ft_treat_type_perc()
-{
-	ft_putchar('%');
-	return (1);
-}
 
 size_t	treat_types(t_flags *flag, va_list ap, char *buf)//TIRAR ELSES ??
 {

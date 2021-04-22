@@ -15,7 +15,9 @@
 
 size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count)
 {
+  
  	ft_putnbr(va_arg(ap, int), buf, 0);
+  int len = ft_strlen(buf);
 	if (*buf == '0' && flag->precision == 0)//caso especial 0
 		return (0);
 //	if (flag->minus || flag->precision != -1)
@@ -38,13 +40,13 @@ size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count)
 			count += ft_fill(flag->precision - ft_strlen(buf), '0');
 		}
 	}
-	if (flag->precision > (int)ft_strlen(buf) && flag->width > flag->precision)
+	if (flag->precision > (int)ft_strlen(buf))// && flag->width > flag->precision)
 		count += ft_fill(flag->precision - ft_strlen(buf), '0');
 
-//	printf("\nlen: |%d|\n", len);
-//	printf("lnb: |%ld|\n", ft_strlen(buf));
+	//printf("\nlen: |%d|\n", len);
+	//printf("lnb: |%ld|\n", ft_strlen(buf));
 	if (flag->zero)
-		ft_fill(flag->width - ft_strlen(buf), '0');//HERE
+		ft_fill(flag->width - len, '0');//HERE
 
 	count += ft_putstr(buf);//CORE
 

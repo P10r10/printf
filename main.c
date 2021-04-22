@@ -8,8 +8,8 @@ int main()
 {
 	puts("123456789012345678901234567890");
 	
-	printf("%04d|\n", -4825);
-  ft_printf("%04d|\n", -4825);
+	printf("%8.3d|\n", -8375);
+  ft_printf("%8.3d|\n", -8375);
 	//ft_printf("%5.4d|\n", 12);
 //pft test 219
 	return 0;

@@ -8,9 +8,8 @@ int main()
 {
 	puts("123456789012345678901234567890");
 	
-	printf("%.5d", 2);
-  ft_printf("%.5d", 2);
-  //ft_printf("%d|\n", 19);
-	//"%3d", 0)
+	printf("%07d|\n", -43);
+  ft_printf("%07d|\n", -43);
+  //224 d_zp_neg_minus1fit
 	return 0;
 }

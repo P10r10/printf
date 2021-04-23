@@ -24,6 +24,22 @@ static size_t	ft_pad(t_flags *flag, int n_digits, int is_neg)
 	return (count);
 }
 
+static size_t	ft_zero_prec(t_flags *flag, int n_digits)
+{
+	size_t count;
+	
+	count = ft_fill(flag->precision - n_digits, '0');
+	return (count);
+}
+
+static size_t	ft_zero_flag(t_flags *flag, int n_digits, size_t is_neg)
+{
+	size_t count;
+	
+	count = ft_fill(flag->width - n_digits - is_neg, '0');
+	return (count);
+}
+
 size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count)
 {
 	int is_neg;
@@ -36,8 +52,8 @@ size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count)
 		buf++;
 	}
 	
-	if (!flag->minus) //tem de haver outros testes?/PAD LEFT
-		count = ft_pad(flag, ft_strlen(buf), is_neg);
+	if (!flag->minus && !flag->zero) //tem de haver outros testes?/PAD LEFT
+		count += ft_pad(flag, ft_strlen(buf), is_neg);
 		
 	if (is_neg)//caso negativo
 	{
@@ -46,6 +62,10 @@ size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count)
 	}
 	
 	//00000 aqui! HERE
+	if (flag->precision > (int)ft_strlen(buf))
+		count += ft_zero_prec(flag, ft_strlen(buf));
+	if (flag->zero)
+		count += ft_zero_flag(flag, ft_strlen(buf), is_neg);
 	count += ft_putstr(buf);//core
 	if (flag->minus) //tem de haver outros testes?/PAD LEFT
 		count = ft_pad(flag, ft_strlen(buf), is_neg);

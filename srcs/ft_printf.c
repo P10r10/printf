@@ -108,35 +108,6 @@ void fill(size_t n, char c)
 		ft_putchar(c);
 }
 
-/*
-size_t	treat_type_d(t_flags *flag, va_list ap, char *buf)//rever isto tudo
-{
-	size_t count = 0;
-	char *s = ft_putnbr(va_arg(ap, int), buf, 0);
-	int len = ft_strlen(s);
-	if (flag->precision >= 0 && flag->precision < len)
-		len = flag->precision;
-	if (flag->minus)
-		while (*s && flag->precision--)
-		{
-			ft_putchar(*s++);
-			count++;
-		}
-	while (flag->width-- > len )
-	{
-		ft_putchar(' ');
-		count++;
-	}
-	if (!(flag->minus))
-		while (*s && flag->precision--)
-		{
-			ft_putchar(*s++);
-			count++;
-		}
-	return (count);
-}*/
-
-
 size_t	treat_types(t_flags *flag, va_list ap, char *buf)//TIRAR ELSES ??
 {
 	size_t count;
@@ -149,7 +120,7 @@ size_t	treat_types(t_flags *flag, va_list ap, char *buf)//TIRAR ELSES ??
 	if(flag->type == 'p')
 		count = ft_treat_type_p(flag, ap, buf, 0);
 	if(flag->type == 'd' || flag->type == 'i')
-		count = ft_treat_type_d(flag, ap, buf, 0);
+		count = ft_treat_type_d(flag, ap, buf, 0, 0);
 	if(flag->type == '%')
 		count = ft_treat_type_perc();
 	if(flag->type == 'x')

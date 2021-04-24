@@ -13,8 +13,6 @@
 #include "../includes/ft_printf.h"
 
 /*static int	analyse_str(const char *str, va_list ap)
-			if (*str == 'd' || *str == 'i')
-				ft_putstr(ft_putnbr(va_arg(ap, int), buffer));
 			if (*str == 'u')
 				ft_putstr(ft_putnbr_u(va_arg(ap, int), buffer));
 			if (*str == 'x')
@@ -121,6 +119,8 @@ size_t	treat_types(t_flags *flag, va_list ap, char *buf)//TIRAR ELSES ??
 		count = ft_treat_type_p(flag, ap, buf, 0);
 	if(flag->type == 'd' || flag->type == 'i')
 		count = ft_treat_type_d(flag, ap, buf, 0, 0);
+	if(flag->type == 'u' || flag->type == 'i')
+		count = ft_treat_type_u(flag, ap, buf, 0, 0);
 	if(flag->type == '%')
 		count = ft_treat_type_perc();
 	if(flag->type == 'x')

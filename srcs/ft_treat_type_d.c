@@ -43,10 +43,8 @@ static size_t	ft_zero_flag(t_flags *flag, int n_digits, int is_neg)
 	return (count);
 }
 
-size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count, int is_neg)
+static void	ft_check_flag(t_flags *flag, va_list ap)
 {
-	//int is_neg;
-	//is_neg = 0;
 	if (flag->placehold_w)
 		flag->width = va_arg(ap, int);
 	if (flag->placehold_p)
@@ -58,6 +56,11 @@ size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count, int i
 	}
 	if (flag->precision != -1 || flag->minus)//gnu specification
 		flag->zero = 0;
+}
+
+size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count, int is_neg)
+{
+	ft_check_flag(flag, ap);
 	ft_putnbr(va_arg(ap, int), buf, 0, 0);
 	if (*buf == '0' && flag->precision == 0)
 		return (ft_pad(flag, ft_strlen(buf) - 1, is_neg));

@@ -36,8 +36,8 @@ int		ft_isspecifier(int c);
 int		ft_isdigit(int c);
 int		ft_printf(const char *str, ...);
 size_t	ft_putchar(char c);
-char	*ft_putnbr(int n, char *res, int is_neg, int mod);
-char	*ft_putnbr_u(unsigned int nb, char *res);
+void	ft_putnbr(int n, char *res, int is_neg, int mod);
+void	ft_putnbr_u(unsigned int nb, char *res);
 char	*ft_putnbr_h(unsigned long int nb, char *res, char c);
 size_t	ft_putstr(char *s);
 size_t	ft_putstr_n(char *s, size_t n);
@@ -50,5 +50,6 @@ size_t	ft_treat_type_p(t_flags *flag, va_list ap, char *buf, size_t count);
 size_t	ft_treat_type_perc();
 size_t	ft_treat_type_s(t_flags *flag, va_list ap, size_t count);
 size_t	ft_treat_type_x(t_flags *flag, va_list ap, char *buf);
+size_t	ft_treat_type_u(t_flags *flag, va_list ap, char *buf);
 
 #endif

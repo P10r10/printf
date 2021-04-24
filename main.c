@@ -7,8 +7,8 @@
 int main()
 {
 	puts("123456789012345678901234567890");
-	printf("%d|\n", INT_MIN);
-	ft_printf("%d|\n", INT_MIN);
-
+	printf("%i|\n", 17);
+	ft_printf("%i|\n", 17);
+//VOU PARA X
 	return 0;
 }

@@ -12,11 +12,16 @@
 
 #include "../includes/ft_printf.h"
 
-char	*ft_putnbr_u(unsigned int n, char *res)
+void	ft_putnbr_u(unsigned int n, char *res)
 {
 	char	*p;
 
 	p = res;
+	if (n == 0)
+	{
+		*p++ = '0';
+		*p = '\0';
+	}
 	while (n)
 	{
 		*p++ = n % 10 + '0';
@@ -24,5 +29,4 @@ char	*ft_putnbr_u(unsigned int n, char *res)
 	}
 	*p = '\0';
 	ft_str_reverse(res);
-	return (res);
 }

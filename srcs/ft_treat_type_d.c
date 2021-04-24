@@ -69,16 +69,16 @@ size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count, int i
 		is_neg = 1;
 		buf++;
 	}
-	if (!flag->minus && !flag->zero) //tem de haver outros testes?/PAD LEFT
+	if (!flag->minus && !flag->zero)
 		count += ft_pad(flag, ft_strlen(buf), is_neg);
-	if (is_neg)//caso negativo
-		count += ft_putchar('-');//alterar putchar para devolver 1?;
+	if (is_neg)
+		count += ft_putchar('-');
 	if (flag->precision > (int)ft_strlen(buf))
 		count += ft_zero_prec(flag, ft_strlen(buf));
 	if (flag->zero)
 		count += ft_zero_flag(flag, ft_strlen(buf), is_neg);
-	count += ft_putstr(buf);//core
-	if (flag->minus) //tem de haver outros testes?/PAD LEFT
+	count += ft_putstr(buf);
+	if (flag->minus)
 		count += ft_pad(flag, ft_strlen(buf), is_neg);
 	return (count);
 }

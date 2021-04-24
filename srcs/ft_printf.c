@@ -111,19 +111,19 @@ size_t	treat_types(t_flags *flag, va_list ap, char *buf)//TIRAR ELSES ??
 	size_t count;
 
 	count = 0;
-	if(flag->type == 'c')
+	if (flag->type == 'c')
 		count = ft_treat_type_c(flag, ap);
-	if(flag->type == 's')
+	if (flag->type == 's')
 		count = ft_treat_type_s(flag, ap, 0);
-	if(flag->type == 'p')
+	if (flag->type == 'p')
 		count = ft_treat_type_p(flag, ap, buf, 0);
-	if(flag->type == 'd' || flag->type == 'i')
+	if (flag->type == 'd' || flag->type == 'i')
 		count = ft_treat_type_d(flag, ap, buf, 0, 0);
-	if(flag->type == 'u' || flag->type == 'i')
-		count = ft_treat_type_u(flag, ap, buf, 0, 0);
-	if(flag->type == '%')
+	if (flag->type == 'u')
+		count = ft_treat_type_u(flag, ap, buf);
+	if (flag->type == '%')
 		count = ft_treat_type_perc();
-	if(flag->type == 'x')
+	if (flag->type == 'x')
 		count = ft_treat_type_x(flag, ap, buf);
 	return (count);
 }

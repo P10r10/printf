@@ -17,6 +17,7 @@ static size_t	ft_pad(t_flags *flag, int n_digits, int is_neg)
 {
 	size_t count;
 
+	count = 0;
 	if (flag->precision > n_digits)
 		n_digits = flag->precision;	
 	if (flag->width > (n_digits + is_neg))
@@ -35,7 +36,8 @@ static size_t	ft_zero_prec(t_flags *flag, int n_digits)
 static size_t	ft_zero_flag(t_flags *flag, int n_digits, int is_neg)
 {
 	size_t count;
-	
+
+	count = 0;	
 	if (flag->width > (n_digits + is_neg))
 		count = ft_fill(flag->width - n_digits - is_neg, '0');
 	return (count);
@@ -44,13 +46,19 @@ static size_t	ft_zero_flag(t_flags *flag, int n_digits, int is_neg)
 size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count, int is_neg)
 {
 	//int is_neg;
-	
 	//is_neg = 0;
+	if (flag->placehold_w)
+		flag->width = va_arg(ap, int);
 	if (flag->placehold_p)
 		flag->precision = va_arg(ap, int);
-	if (flag->precision != -1)//gnu specification
+	if (flag->width < 0)
+	{
+		flag->minus = 1;
+		flag->width *= -1;
+	}
+	if (flag->precision != -1 || flag->minus)//gnu specification
 		flag->zero = 0;
-	ft_putnbr(va_arg(ap, int), buf, 0);
+	ft_putnbr(va_arg(ap, int), buf, 0, 0);
 	if (*buf == '0' && flag->precision == 0)
 		return (ft_pad(flag, ft_strlen(buf) - 1, is_neg));
 	if (*buf == '-')
@@ -68,6 +76,6 @@ size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count, int i
 		count += ft_zero_flag(flag, ft_strlen(buf), is_neg);
 	count += ft_putstr(buf);//core
 	if (flag->minus) //tem de haver outros testes?/PAD LEFT
-		count = ft_pad(flag, ft_strlen(buf), is_neg);
+		count += ft_pad(flag, ft_strlen(buf), is_neg);
 	return (count);
 }

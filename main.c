@@ -7,9 +7,8 @@
 int main()
 {
 	puts("123456789012345678901234567890");
+	printf("%d|\n", INT_MIN);
+	ft_printf("%d|\n", INT_MIN);
 
-	printf("%d|\n", 0);
-	ft_printf("%d|\n", 0);
-	//261 d_zp_neg_minus1fit
 	return 0;
 }

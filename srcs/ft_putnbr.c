@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-char	*ft_putnbr(int n, char *res, int is_neg)
+char	*ft_putnbr(int n, char *res, int is_neg, int mod)
 {
 	char	*p;
 
@@ -23,14 +23,15 @@ char	*ft_putnbr(int n, char *res, int is_neg)
 		*p = '\0';
 		return (res);
 	}
-	if (n < 0)
-	{
-		is_neg = 1;
-		n = -n;
-	}
 	while (n)
 	{
-		*p++ = n % 10 + '0';
+		mod = n % 10;
+		if (mod < 0)
+		{
+			mod = -mod;
+			is_neg = 1;
+		}
+		*p++ = mod + '0';
 		n /= 10;
 	}
 	if (is_neg)

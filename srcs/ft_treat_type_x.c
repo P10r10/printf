@@ -1,14 +1,24 @@
-/*HEADER 42*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_treat_type_x.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alsantia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/25 15:46:54 by alsantia          #+#    #+#             */
+/*   Updated: 2021/04/25 15:48:19 by alsantia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
 static size_t	ft_pad(t_flags *flag, int n_digits)
 {
-	size_t count;
+	size_t	count;
 
 	count = 0;
 	if (flag->precision > n_digits)
-		n_digits = flag->precision;	
+		n_digits = flag->precision;
 	if (flag->width > n_digits)
 		count = ft_fill(flag->width - n_digits, ' ');
 	return (count);
@@ -16,17 +26,17 @@ static size_t	ft_pad(t_flags *flag, int n_digits)
 
 static size_t	ft_zero_prec(t_flags *flag, int n_digits)
 {
-	size_t count;
-	
+	size_t	count;
+
 	count = ft_fill(flag->precision - n_digits, '0');
 	return (count);
 }
 
 static size_t	ft_zero_flag(t_flags *flag, int n_digits)
 {
-	size_t count;
+	size_t	count;
 
-	count = 0;	
+	count = 0;
 	if (flag->width > n_digits)
 		count = ft_fill(flag->width - n_digits, '0');
 	return (count);
@@ -43,17 +53,17 @@ static void	ft_check_flag(t_flags *flag, va_list ap)
 		flag->minus = 1;
 		flag->width *= -1;
 	}
-	if (flag->precision != -1 || flag->minus)//gnu specification
+	if (flag->precision != -1 || flag->minus)
 		flag->zero = 0;
 }
 
-size_t	ft_treat_type_x(t_flags *flag, va_list ap, char *buf)//precision digits //width espaco ocupado
+size_t	ft_treat_type_x(t_flags *flag, va_list ap, char *buf)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	ft_check_flag(flag, ap);
-	ft_putnbr_h(va_arg(ap, unsigned long), buf, 'x');//HERE
+	ft_putnbr_h(va_arg(ap, unsigned long), buf, 'x');
 	if (*buf == '0' && flag->precision == 0)
 		return (ft_pad(flag, ft_strlen(buf) - 1));
 	if (!flag->minus && !flag->zero)

@@ -6,7 +6,7 @@
 /*   By: alsantia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 17:01:24 by alsantia          #+#    #+#             */
-/*   Updated: 2021/04/20 18:30:15 by alsantia         ###   ########.fr       */
+/*   Updated: 2021/04/25 15:38:36 by alsantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,11 @@ size_t	treat_types(t_flags *flag, va_list ap, char *buf)
 	if (flag->type == 'p')
 		count = ft_treat_type_p(flag, ap, buf, 0);
 	if (flag->type == 'd' || flag->type == 'i')
-		count = ft_treat_type_d(flag, ap, buf, 0, 0);
+		count = ft_treat_type_d(flag, ap, buf, 0);
 	if (flag->type == 'u')
 		count = ft_treat_type_u(flag, ap, buf);
 	if (flag->type == '%')
-		count = ft_treat_type_perc();
+		count = ft_treat_type_perc(flag);
 	if (flag->type == 'x')
 		count = ft_treat_type_x(flag, ap, buf);
 	return (count);

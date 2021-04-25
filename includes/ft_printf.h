@@ -6,7 +6,7 @@
 /*   By: alsantia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 15:11:01 by alsantia          #+#    #+#             */
-/*   Updated: 2021/04/20 18:30:16 by alsantia         ###   ########.fr       */
+/*   Updated: 2021/04/25 15:38:53 by alsantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	ft_str_reverse(char *str);
 char	*ft_strdup(char *s);
 size_t	ft_strlen(char *s);
 size_t	ft_treat_type_c(t_flags *flag, va_list ap);
-size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count, int is_neg);
+size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count);
 size_t	ft_treat_type_p(t_flags *flag, va_list ap, char *buf, size_t count);
-size_t	ft_treat_type_perc();
+size_t	ft_treat_type_perc(t_flags *flag);
 size_t	ft_treat_type_s(t_flags *flag, va_list ap, size_t count);
 size_t	ft_treat_type_x(t_flags *flag, va_list ap, char *buf);
 size_t	ft_treat_type_u(t_flags *flag, va_list ap, char *buf);

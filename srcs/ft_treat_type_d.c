@@ -6,7 +6,7 @@
 /*   By: alsantia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 16:28:25 by alsantia          #+#    #+#             */
-/*   Updated: 2021/04/20 21:19:24 by alsantia         ###   ########.fr       */
+/*   Updated: 2021/04/25 15:42:38 by alsantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static size_t	ft_pad(t_flags *flag, int n_digits, int is_neg)
 {
-	size_t count;
+	size_t	count;
 
 	count = 0;
 	if (flag->precision > n_digits)
-		n_digits = flag->precision;	
+		n_digits = flag->precision;
 	if (flag->width > (n_digits + is_neg))
 		count = ft_fill(flag->width - n_digits - is_neg, ' ');
 	return (count);
@@ -26,17 +26,17 @@ static size_t	ft_pad(t_flags *flag, int n_digits, int is_neg)
 
 static size_t	ft_zero_prec(t_flags *flag, int n_digits)
 {
-	size_t count;
-	
+	size_t	count;
+
 	count = ft_fill(flag->precision - n_digits, '0');
 	return (count);
 }
 
 static size_t	ft_zero_flag(t_flags *flag, int n_digits, int is_neg)
 {
-	size_t count;
+	size_t	count;
 
-	count = 0;	
+	count = 0;
 	if (flag->width > (n_digits + is_neg))
 		count = ft_fill(flag->width - n_digits - is_neg, '0');
 	return (count);
@@ -53,12 +53,15 @@ static void	ft_check_flag(t_flags *flag, va_list ap)
 		flag->minus = 1;
 		flag->width *= -1;
 	}
-	if (flag->precision != -1 || flag->minus)//gnu specification
+	if (flag->precision != -1 || flag->minus)
 		flag->zero = 0;
 }
 
-size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count, int is_neg)
+size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count)
 {
+	int	is_neg;
+
+	is_neg = 0;
 	ft_check_flag(flag, ap);
 	ft_putnbr(va_arg(ap, int), buf, 0, 0);
 	if (*buf == '0' && flag->precision == 0)

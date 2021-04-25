@@ -2,13 +2,38 @@
 
 #include "../includes/ft_printf.h"
 
-size_t	ft_treat_type_x(t_flags *flag, va_list ap, char *buf)//precision digits //width espaco ocupado
+static size_t	ft_pad(t_flags *flag, int n_digits)
 {
 	size_t count;
-	char *s;
-	int len;
-	
+
 	count = 0;
+	if (flag->precision > n_digits)
+		n_digits = flag->precision;	
+	if (flag->width > n_digits)
+		count = ft_fill(flag->width - n_digits, ' ');
+	return (count);
+}
+
+static size_t	ft_zero_prec(t_flags *flag, int n_digits)
+{
+	size_t count;
+	
+	count = ft_fill(flag->precision - n_digits, '0');
+	return (count);
+}
+
+static size_t	ft_zero_flag(t_flags *flag, int n_digits)
+{
+	size_t count;
+
+	count = 0;	
+	if (flag->width > n_digits)
+		count = ft_fill(flag->width - n_digits, '0');
+	return (count);
+}
+
+static void	ft_check_flag(t_flags *flag, va_list ap)
+{
 	if (flag->placehold_w)
 		flag->width = va_arg(ap, int);
 	if (flag->placehold_p)
@@ -18,24 +43,27 @@ size_t	ft_treat_type_x(t_flags *flag, va_list ap, char *buf)//precision digits /
 		flag->minus = 1;
 		flag->width *= -1;
 	}
-	s = ft_putnbr_h(va_arg(ap, int), buf, 'x');
-	len = ft_strlen(s);
+	if (flag->precision != -1 || flag->minus)//gnu specification
+		flag->zero = 0;
+}
+
+size_t	ft_treat_type_x(t_flags *flag, va_list ap, char *buf)//precision digits //width espaco ocupado
+{
+	int count;
+
+	count = 0;
+	ft_check_flag(flag, ap);
+	ft_putnbr_h(va_arg(ap, unsigned long), buf, 'x');//HERE
+	if (*buf == '0' && flag->precision == 0)
+		return (ft_pad(flag, ft_strlen(buf) - 1));
+	if (!flag->minus && !flag->zero)
+		count += ft_pad(flag, ft_strlen(buf));
+	if (flag->precision > (int)ft_strlen(buf))
+		count += ft_zero_prec(flag, ft_strlen(buf));
+	if (flag->zero)
+		count += ft_zero_flag(flag, ft_strlen(buf));
+	count += ft_putstr(buf);
 	if (flag->minus)
-	{
-		if (flag->precision > len)
-			count += ft_fill(flag->precision - len, '0');
-		count += ft_putstr_n(s, flag->precision);
-	}
-	if (flag->precision > 0 && (flag->width - flag->precision) > 0)
-		count += ft_fill(flag->width - flag->precision, ' ');
-	/*else
-		if (flag->width > len)
-			count += ft_fill(flag->width - len, ' ');*/
-	if (!(flag->minus))
-	{
-		if (flag->precision > len)
-			count += ft_fill(flag->precision - len, '0');
-		count += ft_putstr_n(s, flag->precision);
-	}
+		count += ft_pad(flag, ft_strlen(buf));
 	return (count);
 }

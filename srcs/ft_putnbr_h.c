@@ -19,15 +19,18 @@ static char	to_upper_h(char c)
 	return (c);
 }
 
-char	*ft_putnbr_h(unsigned long int n, char *res, char c)
+void	ft_putnbr_h(unsigned long n, char *res, char c)
 {
 	char	*hex;
 	char	*p;
 
-	if (n == 0)
-		return ("0");
 	hex = ft_strdup("0123456789abcdef");
 	p = res;
+	if (n == 0)
+	{
+		*p++ = '0';
+		*p = '\0';
+	}
 	while (n)
 	{
 		if (c == 'x')
@@ -39,5 +42,4 @@ char	*ft_putnbr_h(unsigned long int n, char *res, char c)
 	*p = '\0';
 	ft_str_reverse(res);
 	free(hex);
-	return (res);
 }

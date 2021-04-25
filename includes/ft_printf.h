@@ -38,7 +38,7 @@ int		ft_printf(const char *str, ...);
 size_t	ft_putchar(char c);
 void	ft_putnbr(int n, char *res, int is_neg, int mod);
 void	ft_putnbr_u(unsigned int nb, char *res);
-char	*ft_putnbr_h(unsigned long int nb, char *res, char c);
+void	ft_putnbr_h(unsigned long nb, char *res, char c);
 size_t	ft_putstr(char *s);
 size_t	ft_putstr_n(char *s, size_t n);
 void	ft_str_reverse(char *str);

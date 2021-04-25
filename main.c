@@ -6,9 +6,11 @@
 
 int main()
 {
+//	static char	a01;
+
 	puts("123456789012345678901234567890");
-	printf("%i|\n", 17);
-	ft_printf("%i|\n", 17);
-//VOU PARA X
+	printf("%p %p|\n", ULONG_MAX, -ULONG_MAX);
+	ft_printf("%p %p|\n", ULONG_MAX, -ULONG_MAX);
+//x 392
 	return 0;
 }

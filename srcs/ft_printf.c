@@ -106,7 +106,7 @@ void fill(size_t n, char c)
 		ft_putchar(c);
 }
 
-size_t	treat_types(t_flags *flag, va_list ap, char *buf)//TIRAR ELSES ??
+size_t	treat_types(t_flags *flag, va_list ap, char *buf)
 {
 	size_t count;
 

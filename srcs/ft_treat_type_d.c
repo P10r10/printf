@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>//REMOVE
 
 static size_t	ft_pad(t_flags *flag, int n_digits, int is_neg)
 {

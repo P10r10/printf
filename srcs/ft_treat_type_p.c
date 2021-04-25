@@ -21,7 +21,6 @@ static void	ft_putchar_minus(char *ptr)
 size_t	ft_treat_type_p(t_flags *flag, va_list ap, char *buf, size_t count)
 {
 	int		len;
-	char	*ptr;
 
 	if (flag->placehold_w)
 		flag->width = va_arg(ap, int);
@@ -32,14 +31,14 @@ size_t	ft_treat_type_p(t_flags *flag, va_list ap, char *buf, size_t count)
 		flag->minus = 1;
 		flag->width *= -1;
 	}
-	ptr = ft_putnbr_h(va_arg(ap, unsigned long int), buf, 'x');
-	len = ft_strlen(ptr) + 2;
+	ft_putnbr_h(va_arg(ap, long), buf, 'x');
+	len = ft_strlen(buf) + 2;
 	count += len;
 	if (flag->minus)
-		ft_putchar_minus(ptr);
+		ft_putchar_minus(buf);
 	if (flag->width > len)
 		count += ft_fill(flag->width - len, ' ');
 	if (!(flag->minus))
-		ft_putchar_minus(ptr);
+		ft_putchar_minus(buf);
 	return (count);
 }

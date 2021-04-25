@@ -6,7 +6,7 @@
 /*   By: alsantia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 16:34:28 by alsantia          #+#    #+#             */
-/*   Updated: 2021/04/18 16:35:42 by alsantia         ###   ########.fr       */
+/*   Updated: 2021/04/25 17:00:12 by alsantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ size_t	ft_treat_type_p(t_flags *flag, va_list ap, char *buf, size_t count)
 		flag->minus = 1;
 		flag->width *= -1;
 	}
-	ft_putnbr_h(va_arg(ap, long), buf, 'x');
+	ft_putnbr_h(va_arg(ap, long), buf, 'x', 1);
 	len = ft_strlen(buf) + 2;
 	count += len;
 	if (flag->minus)

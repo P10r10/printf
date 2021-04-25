@@ -6,7 +6,7 @@
 /*   By: alsantia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 18:08:10 by alsantia          #+#    #+#             */
-/*   Updated: 2021/04/15 18:10:13 by alsantia         ###   ########.fr       */
+/*   Updated: 2021/04/25 17:00:12 by alsantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ static char	to_upper_h(char c)
 	return (c);
 }
 
-void	ft_putnbr_h(unsigned long n, char *res, char c)
+void	ft_putnbr_h(unsigned long n, char *res, char c, int is_pointer)
+//void	ft_putnbr_h(unsigned int n, char *res, char c)
 {
 	char	*hex;
 	char	*p;
 
+	if (!is_pointer)
+		n = (unsigned int)n;
 	hex = ft_strdup("0123456789abcdef");
 	p = res;
 	if (n == 0)

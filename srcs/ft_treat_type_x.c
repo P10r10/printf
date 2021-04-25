@@ -6,7 +6,7 @@
 /*   By: alsantia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 15:46:54 by alsantia          #+#    #+#             */
-/*   Updated: 2021/04/25 15:48:19 by alsantia         ###   ########.fr       */
+/*   Updated: 2021/04/25 17:00:11 by alsantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ size_t	ft_treat_type_x(t_flags *flag, va_list ap, char *buf)
 
 	count = 0;
 	ft_check_flag(flag, ap);
-	ft_putnbr_h(va_arg(ap, unsigned long), buf, 'x');
+	//ft_putnbr_h(va_arg(ap, unsigned long), buf, 'x');//HERE
+	ft_putnbr_h(va_arg(ap, int), buf, 'x', 0);
 	if (*buf == '0' && flag->precision == 0)
 		return (ft_pad(flag, ft_strlen(buf) - 1));
 	if (!flag->minus && !flag->zero)

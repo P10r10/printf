@@ -6,7 +6,7 @@
 /*   By: alsantia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 15:11:01 by alsantia          #+#    #+#             */
-/*   Updated: 2021/04/25 15:38:53 by alsantia         ###   ########.fr       */
+/*   Updated: 2021/04/25 17:00:51 by alsantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int		ft_printf(const char *str, ...);
 size_t	ft_putchar(char c);
 void	ft_putnbr(int n, char *res, int is_neg, int mod);
 void	ft_putnbr_u(unsigned int nb, char *res);
-void	ft_putnbr_h(unsigned long nb, char *res, char c);
+void	ft_putnbr_h(unsigned long nb, char *res, char c, int is_pointer);
+//void	ft_putnbr_h(unsigned int nb, char *res, char c);
 size_t	ft_putstr(char *s);
 size_t	ft_putstr_n(char *s, size_t n);
 void	ft_str_reverse(char *str);

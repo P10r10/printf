@@ -9,8 +9,8 @@ int main()
 //	static char	a01;
 
 	puts("123456789012345678901234567890");
-	printf("%p %p|\n", ULONG_MAX, -ULONG_MAX);
-	ft_printf("%p %p|\n", ULONG_MAX, -ULONG_MAX);
+	printf("%*.*x|\n", 10, 21, -10);
+	ft_printf("%*.*x|\n", 10, 21, -10);
 //x 392
 	return 0;
 }

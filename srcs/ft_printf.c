@@ -6,26 +6,16 @@
 /*   By: alsantia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 17:01:24 by alsantia          #+#    #+#             */
-/*   Updated: 2021/04/25 15:38:36 by alsantia         ###   ########.fr       */
+/*   Updated: 2021/04/25 19:41:57 by alsantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-/*static int	analyse_str(const char *str, va_list ap)
-			if (*str == 'u')
-				ft_putstr(ft_putnbr_u(va_arg(ap, int), buffer));
-			if (*str == 'x')
-				ft_putstr(ft_putnbr_h(va_arg(ap, int), buffer, 'x'));
-			if (*str == 'X')
-				ft_putstr(ft_putnbr_h(va_arg(ap, int), buffer, 'X'));
-}*/
-
-void update_flags(t_flags *flag, char *s)
+static char	*update_flags_2(t_flags *flag, char *s)
 {
-//parte 1 da maq. de estados
-	while (*s == '#' || *s == '0' || *s == '-' ||
-			*s == ' ' || *s == '+')
+	while (*s == '#' || *s == '0' || *s == '-'
+		   || *s == ' ' || *s == '+')
 	{
 		if (*s == '#')
 			flag->sharp = 1;
@@ -39,7 +29,12 @@ void update_flags(t_flags *flag, char *s)
 			flag->plus = 1;
 		s++;
 	}
-//parte 2 da maq. de estados
+	return (s);
+}
+
+static void	update_flags(t_flags *flag, char *s)
+{
+	s = update_flags_2(flag, s);
 	if (*s == '*')
 	{
 		flag->placehold_w = 1;
@@ -47,12 +42,8 @@ void update_flags(t_flags *flag, char *s)
 	}
 	else
 		while (ft_isdigit(*s))
-		{
-			flag->width = flag->width * 10 + *s - '0';
-			s++;	
-		}
-//parte 3 da maq. de estados
-	if(*s == '.')
+			flag->width = flag->width * 10 + *s++ - '0';
+	if (*s == '.')
 	{
 		s++;
 		flag->precision = 0;
@@ -63,20 +54,14 @@ void update_flags(t_flags *flag, char *s)
 		}
 		else
 			while (ft_isdigit(*s))
-			{
-				flag->precision = flag->precision * 10 + *s - '0';
-				s++;	
-			}
+				flag->precision = flag->precision * 10 + *s++ - '0';
 	}
-//parte 4 da maq. de estados para bonus COMPLETAR
-//estamos no type
 	if (ft_isspecifier(*s))
 		flag->type = *s;
 }
 
-void	init_flags(t_flags *flag)
+static void	init_flags(t_flags *flag)
 {
-	//falta inicializar o resto
 	flag->sharp = 0;
 	flag->zero = 0;
 	flag->space = 0;
@@ -88,27 +73,9 @@ void	init_flags(t_flags *flag)
 	flag->placehold_p = 0;
 }
 
-void	fetch(const char *str, char *buf)
+static size_t	treat_types(t_flags *flag, va_list ap, char *buf)
 {
-	str++;
-	while (!ft_isspecifier(*str) && *str)
-		*buf++ = *str++;
-	//*str tem specifier OU '/0' //tratar
-	if (*str != '\0')
-	{
-		*buf++ = *str;
-		*buf = '\0';
-	}
-}
-void fill(size_t n, char c)
-{
-	while (n--)
-		ft_putchar(c);
-}
-
-size_t	treat_types(t_flags *flag, va_list ap, char *buf)
-{
-	size_t count;
+	size_t	count;
 
 	count = 0;
 	if (flag->type == 'c')
@@ -124,40 +91,37 @@ size_t	treat_types(t_flags *flag, va_list ap, char *buf)
 	if (flag->type == '%')
 		count = ft_treat_type_perc(flag);
 	if (flag->type == 'x')
-		count = ft_treat_type_x(flag, ap, buf);
+		count = ft_treat_type_x(flag, ap, buf, 'x');
+	if (flag->type == 'X')
+		count = ft_treat_type_x(flag, ap, buf, 'X');
 	return (count);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	va_list	ap;
-	t_flags flag;
-	size_t count;
-	char *buffer;
+	t_flags	flag;
+	size_t	count;
+	char	*buffer;
 
 	count = 0;
-	buffer = malloc(20);//rever 20?
-	if (!buffer)
-		return (-1);
+	buffer = malloc(20);
 	va_start(ap, str);
 	while (*str)
 	{
 		if (*str != '%')
-		{
-			ft_putchar(*str);
-			count++;
-		}
+			count += ft_putchar(*str);
 		else
-			{
-				fetch(str, buffer);
-				str += ft_strlen(buffer);
-				init_flags(&flag);
-				update_flags(&flag, buffer);
-				count += treat_types(&flag, ap, buffer);
-			}
+		{
+			ft_fetch(str, buffer);
+			str += ft_strlen(buffer);
+			init_flags(&flag);
+			update_flags(&flag, buffer);
+			count += treat_types(&flag, ap, buffer);
+		}
 		str++;
 	}
 	va_end(ap);
 	free(buffer);
-	return (count);//count
+	return (count);
 }

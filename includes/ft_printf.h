@@ -6,7 +6,7 @@
 /*   By: alsantia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 15:11:01 by alsantia          #+#    #+#             */
-/*   Updated: 2021/04/25 17:00:51 by alsantia         ###   ########.fr       */
+/*   Updated: 2021/04/25 19:39:10 by alsantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_flags
 	char	type;
 }	t_flags;
 
+void	ft_fetch(const char *str, char *buf);
 size_t	ft_fill(size_t n, char c);
 int		ft_isspecifier(int c);
 int		ft_isdigit(int c);
@@ -39,7 +40,6 @@ size_t	ft_putchar(char c);
 void	ft_putnbr(int n, char *res, int is_neg, int mod);
 void	ft_putnbr_u(unsigned int nb, char *res);
 void	ft_putnbr_h(unsigned long nb, char *res, char c, int is_pointer);
-//void	ft_putnbr_h(unsigned int nb, char *res, char c);
 size_t	ft_putstr(char *s);
 size_t	ft_putstr_n(char *s, size_t n);
 void	ft_str_reverse(char *str);
@@ -50,7 +50,7 @@ size_t	ft_treat_type_d(t_flags *flag, va_list ap, char *buf, size_t count);
 size_t	ft_treat_type_p(t_flags *flag, va_list ap, char *buf, size_t count);
 size_t	ft_treat_type_perc(t_flags *flag);
 size_t	ft_treat_type_s(t_flags *flag, va_list ap, size_t count);
-size_t	ft_treat_type_x(t_flags *flag, va_list ap, char *buf);
+size_t	ft_treat_type_x(t_flags *flag, va_list ap, char *buf, char ch);
 size_t	ft_treat_type_u(t_flags *flag, va_list ap, char *buf);
 
 #endif

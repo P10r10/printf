@@ -29,10 +29,7 @@ void	ft_putnbr_h(unsigned long n, char *res, char c, int is_pointer)
 	hex = ft_strdup("0123456789abcdef");
 	p = res;
 	if (n == 0)
-	{
 		*p++ = '0';
-		*p = '\0';
-	}
 	while (n)
 	{
 		if (c == 'x')

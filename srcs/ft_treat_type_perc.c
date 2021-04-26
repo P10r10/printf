@@ -26,8 +26,7 @@ size_t	ft_treat_type_perc(t_flags *flag)
 		else
 			count += ft_fill(flag->width - 1, ' ');
 	}
-	ft_putchar('%');
-	count ++;
+	count += ft_putchar('%');
 	if (flag->width > 1 && flag->minus)
 		count += ft_fill(flag->width - 1, ' ');
 	return (count);

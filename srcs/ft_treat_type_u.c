@@ -53,6 +53,8 @@ static void	ft_check_flag(t_flags *flag, va_list ap)
 		flag->minus = 1;
 		flag->width *= -1;
 	}
+  if (flag->precision < -1)
+    flag->precision = -1;
 	if (flag->precision != -1 || flag->minus)
 		flag->zero = 0;
 }

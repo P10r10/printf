@@ -25,11 +25,10 @@ size_t	ft_treat_type_c(t_flags *flag, va_list ap)
 		flag->width *= -1;
 	}
 	if (flag->minus)
-		ft_putchar(va_arg(ap, int));
+		count += ft_putchar(va_arg(ap, int));
 	if (flag->width > 1)
 		count += ft_fill(flag->width - 1, ' ');
 	if (!(flag->minus))
-		ft_putchar(va_arg(ap, int));
-	count++;
+		count += ft_putchar(va_arg(ap, int));
 	return (count);
 }

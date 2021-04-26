@@ -18,10 +18,7 @@ static size_t	ft_putchar_prec(char *s, t_flags *flag)
 
 	count = 0;
 	while (*s && flag->precision--)
-	{
-		ft_putchar(*s++);
-		count++;
-	}
+		count += ft_putchar(*s++);
 	return (count);
 }
 

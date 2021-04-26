@@ -18,9 +18,6 @@ size_t	ft_putstr(char *s)
 
 	count = 0;
 	while (*s)
-	{
-		ft_putchar(*s++);
-		count++;
-	}
+		count += ft_putchar(*s++);
 	return (count);
 }

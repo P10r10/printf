@@ -18,9 +18,6 @@ size_t	ft_putstr_n(char *s, size_t n)
 
 	count = 0;
 	while (*s && n--)
-	{
-		ft_putchar(*s++);
-		count++;
-	}
+		count += ft_putchar(*s++);
 	return (count);
 }

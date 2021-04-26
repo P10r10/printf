@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-static void	ft_putchar_minus(char *ptr)
+static void	ft_putzero_x(char *ptr)
 {
 	ft_putstr("0x");
 	ft_putstr(ptr);
@@ -35,10 +35,10 @@ size_t	ft_treat_type_p(t_flags *flag, va_list ap, char *buf, size_t count)
 	len = ft_strlen(buf) + 2;
 	count += len;
 	if (flag->minus)
-		ft_putchar_minus(buf);
+		ft_putzero_x(buf);
 	if (flag->width > len)
 		count += ft_fill(flag->width - len, ' ');
 	if (!(flag->minus))
-		ft_putchar_minus(buf);
+		ft_putzero_x(buf);
 	return (count);
 }

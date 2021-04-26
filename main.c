@@ -12,5 +12,8 @@ int main()
   printf("%.*u|\n", -11, -12);
 	//ft_printf("% *.5i|\n", 4, 42);
 
+
+  //42Maz 503/514
+  //pft   677/694
 	return 0;
 }

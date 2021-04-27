@@ -6,7 +6,7 @@
 /*   By: alsantia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 16:28:25 by alsantia          #+#    #+#             */
-/*   Updated: 2021/04/25 15:42:38 by alsantia         ###   ########.fr       */
+/*   Updated: 2021/04/27 18:03:38 by alsantia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static void	ft_check_flag(t_flags *flag, va_list ap)
 		flag->minus = 1;
 		flag->width *= -1;
 	}
-  if (flag->precision < -1)
-    flag->precision = -1;
+	if (flag->precision < -1)
+		flag->precision = -1;
 	if (flag->precision != -1 || flag->minus)
 		flag->zero = 0;
 }
